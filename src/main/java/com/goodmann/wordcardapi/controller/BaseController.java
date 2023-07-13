@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public abstract class BaseController<T, ID> {
 
 	@Autowired
-	private MongoRepository<T, ID> repo;
+	private JpaRepository<T, ID> repo;
 
 	@PostMapping
 	public ResponseEntity<T> create(@RequestBody T model) {

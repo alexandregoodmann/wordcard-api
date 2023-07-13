@@ -1,18 +1,21 @@
 package com.goodmann.wordcardapi.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.ToString;
 
-@Getter
-@Setter
-@Document(collection = "word")
+@Data
+@Entity
+@ToString
 public class Word {
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	private String word;
 	private String level;
 
