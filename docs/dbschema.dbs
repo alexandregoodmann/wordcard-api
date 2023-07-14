@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MySql" id="Project-3dc" database="MySql" >
+	<schema name="worterbuch-dev" >
+		<table name="hibernate_sequence" row_count="1" spec="" >
+			<column name="next_val" type="BIGINT" jt="-5" />
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci]]></options>
+		</table>
+		<table name="list" row_count="0" spec="" >
+			<column name="id" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="description" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="level" type="VARCHAR" length="255" jt="12" />
+			<index name="pk_list" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci]]></options>
+		</table>
+		<table name="list_word" >
+			<column name="id" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="idlist" type="INT" jt="4" mandatory="y" />
+			<column name="idword" type="INT" jt="4" mandatory="y" />
+			<index name="pk_list_word" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_list_word_idlist" unique="UNIQUE_KEY" >
+				<column name="idlist" />
+			</index>
+			<index name="unq_list_word_idword" unique="UNIQUE_KEY" >
+				<column name="idword" />
+			</index>
+			<fk name="FKhh89ntaqw3eoaid3jjmo7vqbr" to_schema="worterbuch-dev" to_table="list" options="" >
+				<fk_column name="idlist" pk="id" />
+			</fk>
+			<fk name="FKas62q3m5tiwdyrvvcaybpx61p" to_schema="worterbuch-dev" to_table="word_definition" options="" >
+				<fk_column name="idword" pk="id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="word_definition" spec="" >
+			<column name="id" type="INT" jt="4" mandatory="y" />
+			<column name="arabs" type="VARCHAR" length="255" jt="12" />
+			<column name="headword" type="VARCHAR" length="255" jt="12" />
+			<column name="headword_full" type="VARCHAR" length="255" jt="12" />
+			<column name="wordclass" type="VARCHAR" length="255" jt="12" />
+			<index name="pk_word_definition" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci]]></options>
+		</table>
+	</schema>
+	<connector name="MySql" database="MySql" driver_class="com.mysql.cj.jdbc.Driver" driver_jar="mysql-connector-j-8.0.32.jar" driver_desc="Standard" host="10.5.0.5" port="3306" instance="worterbuch-dev" user="root" passwd="ZXhhbXBsZQ==" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-1be5" show_relation="columns" >
+		<entity schema="worterbuch-dev" name="hibernate_sequence" color="BED3F4" x="48" y="80" />
+		<entity schema="worterbuch-dev" name="list" color="BED3F4" x="592" y="144" />
+		<entity schema="worterbuch-dev" name="list_word" color="C1D8EE" x="368" y="256" />
+		<entity schema="worterbuch-dev" name="word_definition" color="3986C1" x="64" y="160" />
+		<group name="hibernate_sequence" color="ECF0F7" >
+			<entity schema="worterbuch-dev" name="hibernate_sequence" />
+			<entity schema="worterbuch-dev" name="list_word" />
+			<entity schema="worterbuch-dev" name="list" />
+		</group>
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-fd5" show_column_type="y" show_relation="columns" >
+		<entity schema="worterbuch-dev" name="hibernate_sequence" color="BED3F4" x="48" y="48" />
+		<entity schema="worterbuch-dev" name="list" color="BED3F4" x="304" y="48" />
+		<script name="SQL Editor" id="Editor-d01" language="SQL" >
+			<string><![CDATA[SELECT
+	next_val
+FROM
+	`worterbuch-dev`.hibernate_sequence e;]]></string>
+		</script>
+		<browser id="Browse-2151" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="worterbuch-dev" entity="hibernate_sequence" x="20" y="20" width="400" height="300" />
+		</browser>
+		<query id="Query-2608" name="Query Builder" >
+			<query_table schema="worterbuch-dev" name="hibernate_sequence" alias="hs" x="48" y="48" >
+				<column name="next_val" />
+			</query_table>
+		</query>
+		<form name="Report" id="Report-e18" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Hibernate_sequence Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="next_val" type="-5" />
+						<script ><![CDATA[SELECT * FROM `worterbuch-dev`.hibernate_sequence]]></script>
+					</form_script>
+					<param name="width" value="100%" />
+					<param name="v0" value="next_val" />
+					<param name="title" value="Sample Chart" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="next_val" type="-5" />
+						<script ><![CDATA[SELECT * FROM `worterbuch-dev`.hibernate_sequence]]></script>
+					</form_script>
+					<cell type="label" name="next_val" pos="0,0,0,0,c,c" />
+					<cell type="label" name="Button can open other pages." pos="1,0,1,0,c,c" />
+					<cell type="label" name="${next_val}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-sm btn-secondary" pos="1,1,1,1,c,c" ref_id="Report-e18" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="bi-chevron_double_left" ref_id="Report-e18" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="bi-chevron_left" ref_id="Report-e18" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="bi-chevron_right" ref_id="Report-e18" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>

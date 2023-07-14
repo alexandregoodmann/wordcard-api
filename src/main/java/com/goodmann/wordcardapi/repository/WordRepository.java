@@ -1,10 +1,12 @@
 package com.goodmann.wordcardapi.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.goodmann.wordcardapi.model.Word;
+import com.goodmann.wordcardapi.model.WordDefinition;
 
-public interface WordRepository extends JpaRepository<Word, String> {
+public interface WordRepository extends JpaRepository<WordDefinition, Integer> {
 
-	public Word findByWord(String word);
+	public Optional<WordDefinition> findByHeadword(String headword);
 }

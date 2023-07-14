@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.ToString;
@@ -11,12 +13,17 @@ import lombok.ToString;
 @Data
 @Entity
 @ToString
-public class Word {
+public class ListWord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String word;
-	private String level;
 
+	@ManyToOne
+	@JoinColumn(name = "idword")
+	private WordDefinition word;
+
+	@ManyToOne
+	@JoinColumn(name = "idlist")
+	private List list;
 }
