@@ -19,6 +19,5 @@ public class WordDefinition {
 	private String headword;
 	private String headword_full;
 	private String wordclass;
-	private String json;
 
 }
