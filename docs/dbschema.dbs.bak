@@ -66,7 +66,7 @@
 	<layout name="~Layout with Sample Tools" id="Layout-fd5" show_column_type="y" show_relation="columns" >
 		<entity schema="worterbuch-dev" name="hibernate_sequence" color="BED3F4" x="48" y="48" />
 		<entity schema="worterbuch-dev" name="list" color="BED3F4" x="304" y="48" />
-		<script name="SQL Editor" id="Editor-b46" language="SQL" >
+		<script name="SQL Editor" id="Editor-d01" language="SQL" >
 			<string><![CDATA[SELECT
 	next_val
 FROM

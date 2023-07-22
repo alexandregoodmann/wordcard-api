@@ -41,10 +41,15 @@
 		</table>
 		<table name="word_definition" spec="" >
 			<column name="id" type="INT" jt="4" mandatory="y" />
-			<column name="arabs" type="VARCHAR" length="255" jt="12" />
-			<column name="headword" type="VARCHAR" length="255" jt="12" />
-			<column name="headword_full" type="VARCHAR" length="255" jt="12" />
-			<column name="wordclass" type="VARCHAR" length="255" jt="12" />
+			<column name="headword" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci]]></column_options>
+			</column>
+			<column name="headword_full" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci]]></column_options>
+			</column>
+			<column name="wordclass" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci]]></column_options>
+			</column>
 			<index name="pk_word_definition" unique="PRIMARY_KEY" >
 				<column name="id" />
 			</index>
