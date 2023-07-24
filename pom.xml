@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>br.com.goodmann</groupId>
-	<artifactId>contabilidade-api</artifactId>
+	<artifactId>wordcard-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>contabilidade-api</name>
-	<description>Projeto para contabilidade pessoal</description>
+	<name>wordcard-api</name>
+	<description></description>
 
 	<properties>
 		<java.version>11</java.version>
