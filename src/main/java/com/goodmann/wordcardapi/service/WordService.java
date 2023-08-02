@@ -13,7 +13,7 @@ public class WordService {
 	private WordRepository wordRepository;
 
 	public void addWord(WordDefinition definition) {
-		if (!this.wordRepository.findByHeadword(definition.getHeadword()).isPresent()) {
+		if (this.wordRepository.findByHeadword(definition.getHeadword()).isEmpty()) {
 			this.wordRepository.save(definition);
 		}
 	}
