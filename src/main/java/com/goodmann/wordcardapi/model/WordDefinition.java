@@ -5,12 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.TypeDef;
+
+import com.mysql.cj.xdevapi.JsonString;
+
 import lombok.Data;
 import lombok.ToString;
 
 @Data
-@Entity
 @ToString
+@Entity
+@TypeDef(name = "json", typeClass = JsonString.class)
 public class WordDefinition {
 
 	@Id
@@ -19,5 +24,6 @@ public class WordDefinition {
 	private String headword;
 	private String headword_full;
 	private String wordclass;
+	private String json;
 
 }
