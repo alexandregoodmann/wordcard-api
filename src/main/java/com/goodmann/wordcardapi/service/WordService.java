@@ -43,9 +43,8 @@ public class WordService {
 	}
 
 	public List<WordDefinition> parseToWordDefinition(List<JsonNode> nodes) {
-		List<WordDefinition> list = null;
+		List<WordDefinition> list = new ArrayList<WordDefinition>();
 		if (!nodes.isEmpty()) {
-			list = new ArrayList<WordDefinition>();
 			for (JsonNode hit : nodes.get(0).findValues("hits")) {
 				for (JsonNode rom : hit.findValues("roms")) {
 					WordDefinition definition = new WordDefinition();
