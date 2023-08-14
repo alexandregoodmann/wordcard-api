@@ -47,13 +47,19 @@ public class WordService {
 		if (!nodes.isEmpty()) {
 			for (JsonNode hit : nodes.get(0).findValues("hits")) {
 				for (JsonNode rom : hit.findValues("roms")) {
+					
+					String headword = rom.findValue("headword").asText();
+					
 					WordDefinition definition = new WordDefinition();
-					definition.setHeadword(rom.findValue("headword").asText());
+					definition.setHeadword(headword);
 					definition.setHeadword_full(rom.findValue("headword_full").asText());
 					definition.setWordclass(rom.findValue("wordclass").asText());
 					definition.setJson(rom.toString());
-					this.wordRepository.save(definition);
 					list.add(definition);
+
+					if (this.wordRepository.findByHeadword(headword).isEmpty())
+						this.wordRepository.save(definition);
+
 				}
 			}
 		}
