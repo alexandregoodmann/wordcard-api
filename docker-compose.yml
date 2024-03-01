@@ -21,32 +21,9 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.5.0.6
-              
-  backendserver:
-    image: contabilidade/contabilidade-api
-    container_name: contabilidade-api
-    build: ./contabilidade-api/
-    ports:
-           - "8081"
-    depends_on:
-           - "db"
-    restart: always
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.7
-        
-  frontend:
-    image: contabilidade/contabilidade-web2
-    container_name: contabilidade-web2
-    build: ./contabilidade-web2
-    ports: 
-      - "80:80"
-    depends_on:
-      - "backendserver"
-    restart: always
-    
+                 
   wordcard-api:
-    image: wordcard/wordcard-api
+    image: alexandregoodmann/wordcard-api
     container_name: wordcard-api
     build: ./wordcard-api/
     ports:
@@ -59,7 +36,7 @@ services:
         ipv4_address: 10.5.0.8    
 
   wordcard-web:
-    image: wordcard/wordcard-web
+    image: alexandregoodmann/wordcard-web
     container_name: wordcard-web
     build: ./wordcard
     ports: 
