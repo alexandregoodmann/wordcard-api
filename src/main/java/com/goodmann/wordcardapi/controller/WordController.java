@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.goodmann.wordcardapi.dto.ClassesDTO;
 import com.goodmann.wordcardapi.model.WordDefinition;
 import com.goodmann.wordcardapi.repository.WordRepository;
 import com.goodmann.wordcardapi.service.WordService;
@@ -20,7 +21,7 @@ public class WordController {
 
 	@Autowired
 	private WordService service;
-	
+
 	@Autowired
 	private WordRepository repository;
 
@@ -28,10 +29,20 @@ public class WordController {
 	public List<WordDefinition> getWord(@PathVariable(required = true, name = "word") String word) {
 		return this.service.search(word);
 	}
-	
+
 	@GetMapping("/word")
 	public List<WordDefinition> getWord() {
 		return this.repository.findAll();
+	}
+
+	@GetMapping("/wordclass")
+	public List<ClassesDTO> getClasses() {
+		return this.repository.findClasses();
+	}
+
+	@GetMapping("/wordclass/{wordclass}")
+	public List<WordDefinition> findByWordclass(@PathVariable(required = true, name = "wordclass") String wordclass) {
+		return this.repository.findAllByWordclass(wordclass);
 	}
 
 }
